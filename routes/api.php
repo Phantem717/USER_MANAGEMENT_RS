@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\User_RoleController;
 use App\Http\Controllers\Role_PermissionController;
+use App\Http\Controllers\API\AuthenticationController;
 
 /*use 
 |--------------------------------------------------------------------------
@@ -30,3 +31,6 @@ Route::resource('roles', RoleController::class);
 Route::resource('permissions', PermissionController::class);
 Route::resource('user_roles', User_RoleController::class);
 Route::resource('role_permissions', Role_PermissionController::class);
+Route::post('/register', [AuthenticationController::class, 'register']);
+Route::post('/login', [AuthenticationController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthenticationController::class, 'logout']);
